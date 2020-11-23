@@ -9,7 +9,7 @@ import be.soleas.bosquetwallon.model.logic.booking.Booking;
  */
 public abstract class Client extends User {
 	
-	private List<Booking> bookings;
+	private List<Booking> bookings = new ArrayList<Booking>();
 
 	public Client(Person person, String username, String password, String email, boolean fromDb) {
 		super(person, username, password, email, fromDb);
@@ -31,14 +31,11 @@ public abstract class Client extends User {
 	 * @return
 	 */
 	public void AddBooking(Booking booking) {
-		if(bookings == null)
-			bookings = new ArrayList<Booking>();
 		bookings.add(booking);
 	}
 	
 	public void RemoveBooking(Booking booking) {
 		if(bookings.contains(booking))
 			bookings.remove(booking);
-		}
-
+	}
 }
