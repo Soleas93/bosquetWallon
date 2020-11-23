@@ -1,6 +1,5 @@
 package be.soleas.bosquetwallon.model.logic.user;
 
-import java.util.*;
 
 /**
  * 
@@ -8,14 +7,24 @@ import java.util.*;
 public class Manager extends User {
 
 	/**
-	 * Default constructor
-	 */
-	public Manager() {
-	}
-
-	/**
 	 * 
 	 */
 	private String role;
 
+	public Manager(Person person, String username, String password, String email, String role) {
+		super(person, username, password, email);
+		SetRole(role);
+	}
+
+	public String GetRole() {
+		return role;
+	}
+
+	public void SetRole(String role) {
+		this.role = role;
+	}
+	
+	
+
+	
 }

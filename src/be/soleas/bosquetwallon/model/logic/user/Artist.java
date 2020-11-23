@@ -1,22 +1,27 @@
 package be.soleas.bosquetwallon.model.logic.user;
 
-import java.util.*;
-
 /**
  * 
  */
 public class Artist extends Person {
-
-	/**
-	 * Default constructor
-	 */
-	public Artist() {
-	}
-
+	
 	/**
 	 * 
 	 */
 	private String activity;
 
+	public Artist(String firstname, String name, String address, String activity) {
+		super(firstname, name, address);
+		SetActivity(activity);
+	}
 
+	public String GetActivity() {
+		return activity;
+	}
+
+	public void SetActivity(String activity) {
+		this.activity = activity;
+	}
+	
+	
 }

@@ -1,18 +1,9 @@
 package be.soleas.bosquetwallon.model.logic.user;
 
-import java.util.*;
-
 /**
  * 
  */
 public abstract class Person {
-
-	/**
-	 * Default constructor
-	 */
-	public Person() {
-	}
-
 	/**
 	 * 
 	 */
@@ -22,10 +13,43 @@ public abstract class Person {
 	 * 
 	 */
 	private String name;
-
+	
 	/**
 	 * 
 	 */
 	private String address;
+
+	/**
+	 * Default constructor
+	 */
+	public Person(String firstname, String name, String address ) {
+		SetFirstName(firstName);
+		SetName(name);
+		SetAddress(address);
+	}
+
+	public String GetFirstName() {
+		return firstName;
+	}
+
+	public void SetFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String GetName() {
+		return name;
+	}
+
+	public void SetName(String name) {
+		this.name = name;
+	}
+
+	public String GetAddress() {
+		return address;
+	}
+
+	public void SetAddress(String address) {
+		this.address = address;
+	}
 
 }
