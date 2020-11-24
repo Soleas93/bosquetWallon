@@ -255,7 +255,7 @@
 																				"reference": {
 																					"$ref": "AAAAAAF1KBxb06ca1b0="
 																				},
-																				"aggregation": "composite"
+																				"aggregation": "shared"
 																			},
 																			"visibility": "private"
 																		}

@@ -1,6 +1,5 @@
 package be.soleas.bosquetwallon.model.logic.invoicing.payment;
 
-import java.util.*;
 
 /**
  * 

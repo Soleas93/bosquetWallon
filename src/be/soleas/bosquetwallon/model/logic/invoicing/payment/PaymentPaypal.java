@@ -1,6 +1,5 @@
 package be.soleas.bosquetwallon.model.logic.invoicing.payment;
 
-import java.util.*;
 
 /**
  * 
@@ -23,8 +22,16 @@ public class PaymentPaypal implements IPaymentMode {
 	 * @return
 	 */
 	public PayState Pay(double amount) {
-		return null;
-		
+		//Do some stuff about Paypal
+		return email == null ? PayState.Not : PayState.Paid;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
