@@ -2,12 +2,15 @@ package be.soleas.bosquetwallon.model.logic.show;
 
 import java.util.*;
 
+import be.soleas.bosquetwallon.model.logic.booking.BookingTheater;
 import be.soleas.bosquetwallon.model.logic.user.Artist;
 
 /**
  * 
  */
 public class Show {
+	
+	private BookingTheater owner;
 	
 	private String title;
 	private List<Artist> artists = new ArrayList<Artist>();
@@ -17,15 +20,24 @@ public class Show {
 	/**
 	 * Default constructor
 	 */
-	public Show(String title, List<Artist> artists, Configuration configuration) {
+	public Show(BookingTheater owner, String title, List<Artist> artists, Configuration configuration) {
+		SetOwner(owner);
 		SetTitle(title);
 		SetArtists(artists);
 		SetConfiguration(configuration);
 	}
 	
-	public Show(String title, List<Artist> artists, Configuration configuration, List<Performance> performances) {
-		this(title, artists, configuration);
+	public Show(BookingTheater owner, String title, List<Artist> artists, Configuration configuration, List<Performance> performances) {
+		this(owner, title, artists, configuration);
 		SetPerformances(performances);
+	}
+	
+	private void SetOwner(BookingTheater owner) {
+		this.owner = owner;
+	}
+	
+	public BookingTheater GetOwner() {
+		return owner;
 	}
 
 	public String GetTitle() {
@@ -72,8 +84,36 @@ public class Show {
 			artists.remove(artist);
 	}
 	
-	public void AddPerformance(Performance performance) {
+	public boolean AddPerformance(Performance performance) {
+		if(! performance.GetSchedule().Relate(GetOwner().GetSchedule()).IsContained())
+			return false;
+
+		//TimeLength.Relate on all performances "of" BookingTheater can be heavy, so we make a shortlisting of "suspect" performances
+		/*
+		List<Performance> concurrentPerformances = new ArrayList<Performance>();
+		
+		Predicate<Performance> concurrent = ... ;
+		
+		for(Show s : GetOwner().GetShows()) {
+			concurrentPerformances.addAll((ArrayList<Performance>) s.GetPerformances().stream().filter(concurrent).collect(Collectors.toList()));
+		}
+		
+		for(Performance p : concurrentPerformances) {
+			boolean intersect = performance.GetSchedule().Relate(p.GetSchedule()).IsIntersect();
+			if(intersect)
+				return false;
+		}*/
+
+		for(Show s : GetOwner().GetShows()) {
+			for(Performance p : s.GetPerformances()) {
+				boolean intersect = performance.GetSchedule().Relate(p.GetSchedule()).IsIntersect();
+				if(intersect)
+					return false;
+			}
+		}
+		
 		performances.add(performance);
+		return true;
 	}
 	
 	public void RemovePerformance(Performance performance) {

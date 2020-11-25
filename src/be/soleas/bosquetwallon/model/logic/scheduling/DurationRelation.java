@@ -45,6 +45,7 @@ public enum DurationRelation {
 		}
 	}
 	
+	//Like IsContained but for InstantTimeLength
 	public boolean IsPart() {
 		switch(this){
 		case Inside, BeginGlued, EndGlued :

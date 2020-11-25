@@ -52,7 +52,7 @@ public abstract class TimeLength {
 	 * @return
 	 * @throws Exception 
 	 */
-	public final static DurationRelation Relate(TimeLength first, TimeLength second) throws Exception {
+	public final static DurationRelation Relate(TimeLength first, TimeLength second) {
 		
 		int bbCompare = first.GetBegin().compareTo(second.GetBegin());
 		int beCompare = first.GetBegin().compareTo(second.GetEnd());
@@ -62,7 +62,7 @@ public abstract class TimeLength {
 		int sCompare = second.GetBegin().compareTo(second.GetEnd());
 		
 		if(fCompare > 0 || sCompare > 0)
-			throw new Exception("At least one of the compared TimeLength has not ordered Begin and End ");
+			new Exception("At least one of the compared TimeLength has not ordered Begin and End ").printStackTrace();
 		
 		if (bbCompare < 0) {
 			if(ebCompare < 0) 
@@ -100,7 +100,7 @@ public abstract class TimeLength {
 		
 	}
 	
-	public final DurationRelation Relate (TimeLength to) throws Exception {
+	public final DurationRelation Relate (TimeLength to) {
 		return Relate(this, to);
 	}
 }
