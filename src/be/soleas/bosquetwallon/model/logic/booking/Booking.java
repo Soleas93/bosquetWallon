@@ -1,7 +1,5 @@
 package be.soleas.bosquetwallon.model.logic.booking;
 
-import java.util.*;
-
 import be.soleas.bosquetwallon.model.logic.invoicing.Invoice;
 
 /**
@@ -14,11 +12,25 @@ public abstract class Booking {
 	 */
 	public Booking() {
 	}
+	
+	public Booking(Invoice invoice) {
+		SetInvoice(invoice);
+	}
 
 	/**
 	 * 
 	 */
-	private Invoice invoice;
+	private Invoice invoice = new Invoice();
+
+	public Invoice GetInvoice() {
+		return invoice;
+	}
+
+	private void SetInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
+	
+	
 
 
 }
