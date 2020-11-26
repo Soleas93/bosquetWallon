@@ -8,19 +8,30 @@ import java.util.*;
  */
 public class Configuration implements IModel, Cloneable {
 	
+	private String title;
+	
 	private List<Category> categories = new ArrayList<Category>();
 	private boolean isModel = true;
 
 	/**
 	 * Default constructor
 	 */
-	public Configuration(List<Category> categories, boolean isModel) {
+	public Configuration(String title, List<Category> categories, boolean isModel) {
+		SetTitle(title);
 		SetCategories(categories);
 		this.isModel = isModel;
 	}
 	
-	public Configuration(List<Category> categories) {
-		this(categories, true);
+	public Configuration(String title, List<Category> categories) {
+		this(title, categories, true);
+	}
+	
+	private void SetTitle(String title) {
+		this.title = title;
+	}
+	
+	public String GetTitle() {
+		return title;
 	}
 	
 	public void AddCategory(Category category) {
@@ -36,7 +47,7 @@ public class Configuration implements IModel, Cloneable {
 		return categories;
 	}
 
-	public void SetCategories(List<Category> categories) {
+	private void SetCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
@@ -55,6 +66,7 @@ public class Configuration implements IModel, Cloneable {
 		}
 		
 		c.isModel = false;
+		c.SetTitle(new String(title));
 		
 		for(Category cat : categories)			
 			c.AddCategory((Category)cat.clone());

@@ -4,7 +4,7 @@ package be.soleas.bosquetwallon.model.logic.show;
 /**
  * 
  */
-public class Category implements IModel, Cloneable {
+public class Category implements Cloneable {
 
 	/**
 	 * 
@@ -25,8 +25,6 @@ public class Category implements IModel, Cloneable {
 	 * 
 	 */
 	private int maxBooking = 0;
-	
-	private boolean isModel = true;
 	
 	/**
 	 * Default constructor
@@ -83,13 +81,6 @@ public class Category implements IModel, Cloneable {
 	public void SetMaxBooking(int maxBooking) {
 		this.maxBooking = maxBooking;
 	}
-
-
-
-	@Override
-	public boolean IsModel() {
-		return isModel;
-	}
 	
 	@Override 
 	public Object clone() {
@@ -100,7 +91,6 @@ public class Category implements IModel, Cloneable {
 			cose.printStackTrace(System.err);
 		}
 		c.title = new String(title);
-		c.isModel = false;
 		
 		return c;
 	}
